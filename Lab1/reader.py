@@ -56,9 +56,6 @@ class ReaderFiguresData:
             params = list(map(int, line[1:]))
 
             fig = self.__create_figure(name, params)
-
-            print(name, params)
-            print(fig.area, fig.perimeter)
             
             self.max_perimeter_figure = fig
             self.max_area_figure = fig

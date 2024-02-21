@@ -1,12 +1,13 @@
 from reader import *
 
 def print_info(data: ReaderFiguresData):
-    print("-"*30)
+    filename = data.filepath
+    print(f"[{filename}]","-"*(30 - len(filename)-3))
     print("Max perimeter:", data.max_perimeter)
     print(data.max_perimeter_figure, "\n")
     print("Max area:", data.max_area)
     print(data.max_area_figure)
-    print("-"*30)
+    print("-"*30, "\n")
 
 
 data1 = ReaderFiguresData("./test_data/input01.txt")

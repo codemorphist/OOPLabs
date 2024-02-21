@@ -32,15 +32,8 @@ class Figure(ABC):
     def valid(self) -> bool:
         pass
 
-    @property
-    def name(self):
-        return type(self).__name__
-
 
 class Polygon(Figure):
-    def __init__(self):
-        super().__init__()
-
     @property
     @validate
     def perimeter(self) -> Len:
@@ -50,13 +43,16 @@ class Polygon(Figure):
     def valid(self) -> bool:
         return not 0 in self.sides
 
+    @property
+    def name(self):
+        return type(self).__name__
+
     def __str__(self) -> str:
         return f"[{self.name}] ({self.sides})"
 
 
 class Triangle(Polygon):
     def __init__(self, a: Len, b: Len, c: Len):
-        super().__init__()
         self.sides: list[Len] = [a, b, c]
 
     @property
@@ -77,7 +73,6 @@ class Triangle(Polygon):
 
 class Rectangle(Polygon):
     def __init__(self, a: Len, b: Len):
-        super().__init__()
         self.sides: list[Len] = [a, b, a, b]
 
     @property
@@ -90,7 +85,6 @@ class Rectangle(Polygon):
 class Trapeze(Polygon):
     def __init__(self, base1: Len, base2: Len, 
                  side1: Len, side2: Len):
-        super().__init__()
         self.sides: list[Len] = [base1, base2, 
                                  side1, side2]
 
@@ -122,8 +116,6 @@ class Trapeze(Polygon):
 
 class Parallelogram(Polygon):
     def __init__(self, a: Len, b: Len, heigth: Len):
-        super().__init__()
-        
         self.sides = [a, b, a, b]
         self.heigth = heigth
 
@@ -133,10 +125,12 @@ class Parallelogram(Polygon):
         a = max(self.sides)
         return a * self.heigth * 0.5
 
+    def __str__(self) -> str:
+        return f"[{self.name}] ({self.sides[0]}, {self.sides[1]}, {self.heigth})"
+
         
 class Circle(Figure):
     def __init__(self, r: Len):
-        super().__init__()
         self.r = r
 
     @property
@@ -152,6 +146,10 @@ class Circle(Figure):
     @property
     def valid(self) -> bool:
         return True
+
+    @property
+    def name(self):
+        return type(self).__name__
     
     def __str__(self) -> str:
         return f"[{self.name}] ({self.r})"
