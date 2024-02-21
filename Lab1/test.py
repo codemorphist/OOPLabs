@@ -1,5 +1,10 @@
-from figures import *
+from reader import ReadFiguresData
+# from figures import Triangle
 
-tr = Trapeze(10, 50, 13, 37)
-print(tr.heigth)
-print(tr.area)
+data = ReadFiguresData("./input01.txt")
+data.read()
+
+# tg = Triangle(3, 4, 5)
+# print(tg.area)
+
+
