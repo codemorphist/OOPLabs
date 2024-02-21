@@ -8,8 +8,8 @@ Area: TypeAlias = int | float
 
 def validate(func): 
     """
-    Decorator, which calculate perimeter, area or perimeter
-    only if figure with parameters exist
+    Decorator, which modify function to calculate 
+    perimeter, area or perimeter only if figure exist
     """
     def inner(self, *args, **kwargs):
         if not self.valid: return 0 
@@ -20,16 +20,25 @@ class Figure(ABC):
     @property
     @abstractmethod
     def perimeter(self) -> Len:
+        """
+        Return perimeter of figure
+        """
         pass
 
     @property
     @abstractmethod
     def area(self) -> Len:
+        """
+        Return area of figure
+        """
         pass
 
     @property
     @abstractmethod
     def valid(self) -> bool:
+        """
+        Return true if figure can exist
+        """
         pass
 
 
@@ -41,6 +50,9 @@ class Polygon(Figure):
         
     @property
     def valid(self) -> bool:
+        """
+        If Polygon have 0 size side return False
+        """
         return not 0 in self.sides
 
     @property
@@ -58,12 +70,19 @@ class Triangle(Polygon):
     @property
     @validate
     def area(self) -> Area:
+        """
+        Gerone formula:
+        [S = sqrt(p * (p-a) * (p-b) * (p-c))]
+        """
         p = self.perimeter / 2
         a, b, c = self.sides
         return sqrt(p * (p-a) * (p-b) * (p-c))
 
     @property
     def valid(self) -> bool:
+        """
+        Use Triangle rule
+        """
         a, b, c = self.sides
         if a > b + c: return False
         if b > a + c: return False
@@ -91,6 +110,13 @@ class Trapeze(Polygon):
     @property
     @validate
     def heigth(self) -> Len:
+        """
+        Calculate heigth of Trapeze.
+        Split Trapeze to Triangle and Parallelogram,
+        calculate area of Triangle with sides [b1-b2, s1, s2],
+        after this in that Trianle use formula: 
+        [S = 1/2 * a * h] to find [h]
+        """
         b1, b2, s1, s2 = self.sides
         if b1 == b2:
             return s1
@@ -100,6 +126,13 @@ class Trapeze(Polygon):
     @property
     @validate
     def area(self) -> Area:
+        """
+        Use formula:
+        [S = (a+b) / 2 * h]
+
+        If sides are equal:
+        [S = a * b]
+        """
         a, b = self.sides[0], self.sides[1]
         if a == b: 
             return a * self.sides[2]
@@ -107,6 +140,9 @@ class Trapeze(Polygon):
 
     @property
     def valid(self) -> Area:
+        """
+        Use Triangle rule
+        """
         b1, b2, s1, s2 = self.sides
         if b1 == b2: 
             return s1 == s2  
@@ -122,6 +158,10 @@ class Parallelogram(Polygon):
     @property
     @validate
     def area(self) -> Area:
+        """
+        Use formula:
+        [S = 1/2 * a * h]
+        """
         a = max(self.sides)
         return a * self.heigth * 0.5
 
@@ -136,15 +176,27 @@ class Circle(Figure):
     @property
     @validate
     def perimeter(self) -> Len:
+        """
+        Use formula:
+        [P = 2 * pi * r]
+        """
         return 2 * pi * self.r
 
     @property
     @validate
     def area(self) -> Area:
+        """
+        Use formula:
+        [S = pi * r^2]
+        """
         return pi * self.r**2
 
     @property
     def valid(self) -> bool:
+        """
+        Circle always exis with any radius > 0
+        If radius is 0, area and perimeter also 0
+        """
         return True
 
     @property
