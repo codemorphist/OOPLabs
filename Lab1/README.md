@@ -26,9 +26,18 @@
 
 ## Solution
  
-Files: 
-    - main.py       Main program file
-    - test.py       File with tests
-    - figures.py    File with implementation classes of figures
-    - reader.py     File with implementation class of reader  
-    - test_data     Folder with test input data
+Files structure: 
+- main.py       Main program file
+- test.py       File with tests
+- figures.py    File with implementation classes of figures
+- reader.py     File with implementation class of reader  
+- test_data     Folder with test input data
+
+ToDo:
+- [ ]  Add figures classes __(in progress)__
+    - [x] Triangle()
+    - [x] Rectangle()
+    - [ ] Trapeze()
+    - [x] Parallelogram()
+    - [x] Circle()
+- [ ] Write ReadFiguresData() class __(in progress)__
