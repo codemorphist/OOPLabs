@@ -26,4 +26,9 @@
 
 ## Solution
  
-TODO
+Files: 
+    - main.py       Main program file
+    - test.py       File with tests
+    - figures.py    File with implementation classes of figures
+    - reader.py     File with implementation class of reader  
+    - test_data     Folder with test input data
