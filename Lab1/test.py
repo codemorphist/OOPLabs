@@ -1,10 +1,23 @@
-from reader import ReadFiguresData
-# from figures import Triangle
+from reader import *
 
-data = ReadFiguresData("./input01.txt")
-data.read()
+def print_info(data: ReaderFiguresData):
+    print("-"*30)
+    print("Max perimeter:", data.max_perimeter)
+    print(data.max_perimeter_figure, "\n")
+    print("Max area:", data.max_area)
+    print(data.max_area_figure)
+    print("-"*30)
 
-# tg = Triangle(3, 4, 5)
-# print(tg.area)
 
+data1 = ReaderFiguresData("./test_data/input01.txt")
+data2 = ReaderFiguresData("./test_data/input02.txt")
+data3 = ReaderFiguresData("./test_data/input03.txt")
+
+data1.read()
+data2.read()
+data3.read()
+
+print_info(data1)
+print_info(data2)
+print_info(data3)
 

@@ -1,15 +1,15 @@
 from figures import Figure, Triangle, Rectangle, Trapeze, Parallelogram, Circle
 from figures import Len, Area
 
-class ReadFiguresData:
+class ReaderFiguresData:
     def __init__(self, filepath: str):
         self.filepath = filepath 
 
         self._max_perimeter_figure: Figure = None
         self._max_area_figure: Figure = None
 
-        self._max_perimeter: Len = -1
-        self._max_area: Area = -1
+        self.max_perimeter: Len = -1
+        self.max_area: Area = -1
 
         self.readed = False
 
@@ -17,23 +17,25 @@ class ReadFiguresData:
     @property
     def max_perimeter_figure(self) -> Figure:
         return self._max_perimeter_figure
+
     @max_perimeter_figure.setter
     def max_perimeter_figure(self, fig: Figure):
-        perim = fig.get_perimeter
-        if perim > self._max_perimeter:
+        perim = fig.perimeter
+        if perim > self.max_perimeter:
             self._max_perimeter_figure = fig 
-            self._max_perimeter = perim
+            self.max_perimeter = perim
 
 
     @property
     def max_area_figure(self) -> Figure:
         return self._max_area_figure
+
     @max_area_figure.setter
     def max_area_figure(self, fig: Figure):
-        area = fig.get_area
-        if area > self._max_area:
+        area = fig.area
+        if area > self.max_area:
             self._max_area_figure = fig
-            self._max_area = area
+            self.max_area = area
 
 
     def __create_figure(self, name: str, params: list[Len]) -> Figure:
@@ -56,6 +58,7 @@ class ReadFiguresData:
             fig = self.__create_figure(name, params)
 
             print(name, params)
+            print(fig.area, fig.perimeter)
             
             self.max_perimeter_figure = fig
             self.max_area_figure = fig
