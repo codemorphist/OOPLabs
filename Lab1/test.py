@@ -3,10 +3,9 @@ from reader import *
 def print_info(data: ReaderFiguresData):
     filename = data.filepath
     print(f"[{filename}]","-"*(60 - len(filename)-3))
+    print(data.max_figure, "\n")
     print("Max perimeter:", data.max_perimeter)
-    print(data.max_perimeter_figure, "\n")
     print("Max area:", data.max_area)
-    print(data.max_area_figure)
     print("-"*60, "\n")
 
 

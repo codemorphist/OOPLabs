@@ -5,8 +5,7 @@ class ReaderFiguresData:
     def __init__(self, filepath: str):
         self.filepath = filepath 
 
-        self._max_perimeter_figure: Figure = None
-        self._max_area_figure: Figure = None
+        self._max_figure: Figure = None
 
         self.max_perimeter: Len = -1
         self.max_area: Area = -1
@@ -15,26 +14,16 @@ class ReaderFiguresData:
 
 
     @property
-    def max_perimeter_figure(self) -> Figure:
-        return self._max_perimeter_figure
+    def max_figure(self) -> Figure:
+        return self._max_figure
 
-    @max_perimeter_figure.setter
-    def max_perimeter_figure(self, fig: Figure):
+    @max_figure.setter
+    def max_figure(self, fig: Figure):
         perim = fig.perimeter
-        if perim > self.max_perimeter:
-            self._max_perimeter_figure = fig 
-            self.max_perimeter = perim
-
-
-    @property
-    def max_area_figure(self) -> Figure:
-        return self._max_area_figure
-
-    @max_area_figure.setter
-    def max_area_figure(self, fig: Figure):
         area = fig.area
-        if area > self.max_area:
-            self._max_area_figure = fig
+        if area > self.max_area and perim > self.max_perimeter:
+            self._max_figure = fig
+            self.max_perimeter = perim
             self.max_area = area
 
 
@@ -57,8 +46,7 @@ class ReaderFiguresData:
 
             fig = self.__create_figure(name, params)
             
-            self.max_perimeter_figure = fig
-            self.max_area_figure = fig
+            self.max_figure = fig
 
         readed = True
 
