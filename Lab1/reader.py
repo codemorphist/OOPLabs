@@ -48,12 +48,13 @@ class ReaderFiguresData:
             
             self.max_figure = fig
 
-        readed = True
+        self.readed = True
 
 
     def get_result(self) -> None:
         if not self.readed:
             raise Exception("You don't read data yet.")
         
-        return (self.max_perimeter_figure, 
-                self.max_area_figure)
+        return (self.max_figure,
+                self.max_perimeter,
+                self.max_area)
