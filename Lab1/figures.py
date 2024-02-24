@@ -9,7 +9,7 @@ Area: TypeAlias = int | float
 def validate(func): 
     """
     Decorator, which modify function to calculate 
-    perimeter, area or perimeter only if figure exist
+    perimeter, area or heigth only if figure exist
     """
     def inner(self, *args, **kwargs):
         if not self.valid: return 0 
