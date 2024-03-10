@@ -1,8 +1,10 @@
 from drawer import Drawer
-from triangle import Triangle
 
 d = Drawer()
-tr = Triangle(10, 20, 5, -10)
 
-d.draw_triangle(tr)
+# draw 100 random triangles
+for i in range(100):
+    tr = d.get_random_triangle()
+    d.draw_triangle(tr)
+
 input()
