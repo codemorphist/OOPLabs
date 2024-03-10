@@ -56,4 +56,6 @@ def animate_scale(tr: Triangle, scale: tuple[int] | tuple[float]):
     input()
 
 
+draw_100_triangles()
+
 

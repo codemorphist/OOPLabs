@@ -137,8 +137,7 @@ class Drawer:
             *self.get_random_vertex(x_range, y_range),
             *self.get_random_vertex(x_range, y_range)
         )
-        # tr.set_position(*self.get_random_vertex(x_range, y_range))
-        tr.set_position(0, 0)
+        tr.set_position(*self.get_random_vertex(x_range, y_range))
         tr.set_color(self.get_random_color())
 
         return tr
