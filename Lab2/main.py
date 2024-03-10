@@ -28,12 +28,13 @@ def animate_rotation(tr: Triangle, angle: Angle):
 
     input()
 
-def animate_rotation_of_dot(tr: Triangle, dot: Coord, angle: Angle):
+def animate_rotation_of_dot(tr: Triangle, angle: Angle, dot: Coord):
     tr.set_pivot(*dot)
     animate_rotation(tr, angle)
 
 
-def animate_scale(tr: Triangle, scale: tuple[int] | tuple[float]):
+def animate_scale(tr: Triangle, 
+                  scale: tuple[int] | tuple[float]):
     d = Drawer()
 
     sx, sy = scale
@@ -56,6 +57,11 @@ def animate_scale(tr: Triangle, scale: tuple[int] | tuple[float]):
     input()
 
 
-draw_100_triangles()
+def animate_scale_of_dot(tr: Triangle, 
+                         scale: tuple[int] | tuple[float],
+                         dot: Coord):
+    tr.set_pivot(*dot)
+    animate_scale(tr, scale)
 
 
+animate_scale_of_dot(Triangle(40, 50, 60, -50), (4, 4), (10, 16))

@@ -53,8 +53,8 @@ class Drawer:
                                 tr.pivot)
 
         # scale vertex
-        v1 = self.scale_vertex(v1, *tr.scale)
-        v2 = self.scale_vertex(v2, *tr.scale)
+        v1 = self.scale_vertex(v1, *tr.scale, tr.pivot)
+        v2 = self.scale_vertex(v2, *tr.scale, tr.pivot)
 
         penup()
         color(col)
@@ -88,7 +88,8 @@ class Drawer:
     def scale_vertex(self, 
                      vertex: Coord, 
                      scale_x: int = 1, 
-                     scale_y: int = 1) -> Coord:
+                     scale_y: int = 1,
+                     pivot: Coord = (0, 0)) -> Coord:
         """
         Scale vertex by Ox and Oy
 
@@ -98,6 +99,9 @@ class Drawer:
 
         :return scaled vertex
         """
+        px, py = pivot
+        x, y = vertex
+        x, y = x - px, y - py
         return (vertex[0]*scale_x, vertex[1]*scale_y)
 
 

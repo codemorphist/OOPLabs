@@ -23,3 +23,4 @@ class Triangle:
 
     def set_pivot(self, pivot_x, pivot_y):
         self.pivot = (pivot_x, pivot_y)
+
