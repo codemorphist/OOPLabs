@@ -70,8 +70,8 @@ Equations with any solutions:
 
 
 
-Min solution: -4.344063736045563
-Min solution equation: 6x^2+21x-22
+Min solution: -2.125
+Min solution equation: 0x^2+8x+17
 
-Max solution: 8.444444444444445
-Max solution equation: 9x^2-76x+0
+Max solution: 1.3269230769230769
+Max solution equation: 52x-69

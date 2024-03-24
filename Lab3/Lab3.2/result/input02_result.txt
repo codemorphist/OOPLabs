@@ -1337,5 +1337,5 @@ Equations with any solutions:
 Min solution: -60.0
 Min solution equation: -1x-60
 
-Max solution: 25.471121771072845
-Max solution equation: -1x^2+25x+12
+Max solution: 24.0
+Max solution equation: 0x^2-4x+96

@@ -2676,5 +2676,5 @@ Equations with any solutions:
 Min solution: -96.0
 Min solution equation: -1x-96
 
-Max solution: 80.42276586281548
-Max solution equation: -1x^2+80x+34
+Max solution: 69.0
+Max solution equation: -1x+69

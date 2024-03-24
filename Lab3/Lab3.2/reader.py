@@ -37,10 +37,12 @@ class ReaderEquationsData:
         solvs = eq.solve()
         if solvs == REAL:
             self._by_solutions[5].append(eq)
-            return
+            return 
         else:
             self._by_solutions[len(solvs)].append(eq)
 
+        if len(solvs) != 1:
+            return
         for s in solvs:
             if self._min_solution is None or s < self._min_solution:
                 self._min_solution = s
