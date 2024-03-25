@@ -13,23 +13,25 @@ def validate(func):
     """
     Decorator, which modify function to calculate 
     perimeter, area or heigth only if figure exist
+    else return 0
     """
     def inner(self, *args, **kwargs):
-        if not self.valid: return 0 
+        if not self.valid: return 0
         return func(self, *args, **kwargs)
     return inner
 
 
 class Figure(ABC):
+    _dimention: int # dimention of Figure
+
     @property
-    @abstractmethod 
     def dimention(self) -> int:
         """
         Return dimention of figure
         """
-        pass
+        return self._dimention
 
-    @property
+    @abstractmethod
     def volume(self) -> Area | Volume:
         """
         Return volume of figure 
@@ -38,8 +40,25 @@ class Figure(ABC):
         """
         pass
 
+    @property
+    @abstractmethod
+    def valid(self) -> bool:
+        """
+        Return true if figure can exist
+        """
+        pass
+
+    @property
+    def name(self):
+        return type(self).__name__
+
+    def __repr__(self):
+        return str(self)
+
     
 class Figure2D(Figure):
+    _dimention = 2
+
     @property
     @abstractmethod
     def perimeter(self) -> Len:
@@ -56,17 +75,40 @@ class Figure2D(Figure):
         """
         pass
 
-    @property
-    @abstractmethod
-    def valid(self) -> bool:
-        """
-        Return true if figure can exist
-        """
-        pass
+    def square(self) -> Area:
+        return self.area
+
+    def volume(self) -> Area:
+        return self.area
 
 
 class Figure3D(Figure):
-    ...
+    _dimention = 3
+
+    @abstractmethod
+    def volume(self) -> Area:
+        """
+        Return volume of figure
+        """
+        pass
+
+    def square_surface(self) -> Area:
+        """
+        Return area of figure surface
+        """
+        pass
+
+    def square_base(self) -> Area:
+        """
+        Return area of figure base
+        """
+        pass
+
+    def heigth(self) -> Len:
+        """
+        Return len of figure height
+        """
+        pass
 
 
 class Polygon(Figure2D):
@@ -82,12 +124,8 @@ class Polygon(Figure2D):
         """
         return not 0 in self.sides
 
-    @property
-    def name(self):
-        return type(self).__name__
-
     def __str__(self) -> str:
-        return f"[{self.name}] ({self.sides})"
+        return f"({self.name}) {self.sides}"
 
 
 class Triangle(Polygon):
@@ -196,7 +234,7 @@ class Parallelogram(Polygon):
         return f"[{self.name}] ({self.sides[0]}, {self.sides[1]}, {self.heigth})"
 
         
-class Circle(Figure):
+class Circle(Figure2D):
     def __init__(self, r: Len):
         self.r = r
 
@@ -225,11 +263,59 @@ class Circle(Figure):
         If radius is 0, area and perimeter also 0
         """
         return True
+        
+    def __str__(self) -> str:
+        return f"({self.name}) [{self.r}]"
+
+
+class Ball(Figure3D):
+    def __init__(self, r: Len):
+        self.r = r
 
     @property
-    def name(self):
-        return type(self).__name__
-    
-    def __str__(self) -> str:
-        return f"[{self.name}] ({self.r})"
+    def valid(self) -> bool:
+        """
+        Ball always can exist with any radius
+        """
+        return True
 
+    @validate
+    def square_surface(self) -> Area:
+        return 4*pi*self.r**2
+
+    @validate
+    def volume(self) -> Volume:
+        return 4/3*pi*self.r**3
+
+    def __str__(self) -> str:
+        return f"({self.name}) [{self.r}]"
+
+
+class TriangularPyramid(Figure3D):
+    def __init__(self, a: Len, heigth: Len):
+        self.a = a  # Len of base side
+        self.height = heigth   # Height of pyramid 
+
+    @property
+    def valid(self) -> bool:
+        return self.a != 0 and self.height != 0
+    
+    @validate
+    def square_base(self) -> Area:
+        return self.a**2*sqrt(3)/4
+
+    @validate
+    def square_surface(self) -> Area:
+        """
+        Calculate square of surface triangle and multiply by 3
+        """
+        base_mediane = self.a*sqrt(3)/2
+        surf_triangle_height = sqrt( (1/3 * base_mediane)**2 + self.height**2 )
+        return 3/2 * self.a * surf_triangle_height
+
+    @validate
+    def volume(self) -> Volume:
+        return self.height * self.square_base()
+        
+    def __str__(self) -> str:
+        return f"({self.name}) [{self.a}, {self.height}]"
