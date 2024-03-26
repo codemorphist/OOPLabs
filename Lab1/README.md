@@ -34,7 +34,7 @@ Folder structure:
 - test_data     :Folder with test input data
 
 ToDo:
-- [x]  Add figures classes __(in progress)__
+- [x]  Add figures classes
     - [x] Triangle()
     - [x] Rectangle()
     - [x] Trapeze()
