@@ -34,10 +34,10 @@ Folder structure:
 - test_data     :Folder with test input data
 
 ToDo:
-- [ ]  Add figures classes __(in progress)__
+- [x]  Add figures classes __(in progress)__
     - [x] Triangle()
     - [x] Rectangle()
-    - [ ] Trapeze()
+    - [x] Trapeze()
     - [x] Parallelogram()
     - [x] Circle()
-- [ ] Write ReadFiguresData() class __(in progress)__
+- [x] Write ReadFiguresData() class
