@@ -104,11 +104,12 @@ class Figure3D(Figure):
         """
         pass
 
+    @property
     def heigth(self) -> Len:
         """
         Return len of figure height
         """
-        pass
+        pass 
 
 
 class Polygon(Figure2D):
@@ -298,7 +299,7 @@ class TriangularPyramid(Figure3D):
 
     @property
     def valid(self) -> bool:
-        return self.a != 0 and self.height != 0
+        return self.a > 0 and self.height > 0
     
     @validate
     def square_base(self) -> Area:
@@ -315,7 +316,121 @@ class TriangularPyramid(Figure3D):
 
     @validate
     def volume(self) -> Volume:
-        return self.height * self.square_base()
+        return self.height * self.square_base() / (4 * sqrt(3))
         
     def __str__(self) -> str:
         return f"({self.name}) [{self.a}, {self.height}]"
+
+
+class QuadrangularPyramid(Figure3D):
+    def __init__(self, a: Len, b: Len, height: Len):
+        self.a = a
+        self.b = b
+        self.height = height
+
+   
+    @property
+    def valid(self) -> bool:
+        return self.a > 0 and self.b > 0 and self.height > 0
+
+    @validate
+    def square_surface(self) -> Area:
+        height = self.height
+        a, b = self.a, self.b
+        surf_a_height = sqrt(height**2 + (b/2)**2)
+        surf_b_height = sqrt(height**2 + (a/2)**2)
+        trngl_a_area = 1/2 * a * surf_a_height
+        trngl_b_area = 1/2 * b * surf_b_height
+        return 2*trngl_a_area + 2*trngl_b_area
+
+    @validate
+    def square_base(self) -> Area:
+        return self.a * self.b
+
+    @validate 
+    def volume(self) -> Volume:
+        return 1/3 * self.square_base() * self.height
+
+    def __str__(self) -> str:
+        return f"({self.name}) [{self.a}, {self.b}, {self.height}]"
+
+
+class RectangularParallelepiped(Figure3D):
+    def __init__(self, a: Len, b: Len, c: Len):
+        self.a = a
+        self.b = b
+        self.c = c
+
+    @property
+    def valid(self) -> bool:
+        return self.a > 0 and self.b > 0 and self.c > 0
+
+    @validate
+    def square_surface(self) -> Area:
+        a, b, c = self.a, self.b, self.c
+        return 2*a*c + 2*b*c
+
+    @validate
+    def square_base(self) -> Area:
+        return self.a * self.b
+
+    @validate
+    def volume(self) -> Volume:
+        return self.a * self.b * self.c
+
+    def __str__(self) -> str:
+        return f"({self.name}) [{self.a}, {self.b}, {self.c}]"
+
+class Cone(Figure3D):
+    def __init__(self, r: Len, height: Len):
+        self.r = r
+        self.height = height
+
+    @property
+    def valid(self) -> bool:
+        return self.r > 0 and self.height > 0
+
+    @validate
+    def square_surface(self) -> Area:
+        L = sqrt(self.r ** 2 + self.height ** 2)
+        return pi * self.r * L
+
+    @validate
+    def square_base(self) -> Area:
+        return Circle(self.r).area
+
+    @validate
+    def volume(self) -> Volume:
+        return 1/3 * self.square_base() * self.height
+
+    def __str__(self) -> str:
+        return f"({self.name}) [{self.r}, {self.height}]"
+
+
+class TriangularPrism(Figure3D):
+    def __init__(self, a: Len, b: Len, c: Len, height: Len):
+        self.sides = [a, b, c]
+        self.height = height
+
+    @property
+    def valid(self) -> bool:
+        return Triangle(*self.sides).valid and self.height > 0
+
+    @validate 
+    def square_surface(self) -> Area:
+        surf_area = 0
+        for s in self.sides:
+            surf_area += s * self.height
+        return surf_area
+    
+    @validate
+    def square_base(self) -> Area:
+        return Triangle(*self.sides).area
+
+    @validate
+    def volume(self) -> Volume:
+        return self.square_base() * self.height
+
+    def __str__(self) -> str:
+        return f"({self.name}) [{self.sides}, {self.height}]"
+
