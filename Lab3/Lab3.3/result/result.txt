@@ -1,0 +1,18 @@
+
+test_data/input01.txt ---------
+Max volume figure:
+Figure: (Ball) [25]
+Volume: 65449.84694978735
+------------------------------
+
+test_data/input02.txt ---------
+Max volume figure:
+Figure: (Ball) [25]
+Volume: 65449.84694978735
+------------------------------
+
+test_data/input03.txt ---------
+Max volume figure:
+Figure: (Ball) [25]
+Volume: 65449.84694978735
+------------------------------

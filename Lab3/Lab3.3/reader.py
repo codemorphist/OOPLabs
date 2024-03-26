@@ -4,31 +4,25 @@ from figures import Len, Area
 
 class ReaderFiguresData:
     def __init__(self, filepath: str):
-        self.filepath = filepath 
-
-        self._max_figure: Figure = None
-
-        self.max_perimeter: Len = -1
-        self.max_area: Area = -1
-
-        self.readed = False
-
+        self._filepath = filepath 
+        self._max_volume = 0
+        self._max_volume_figure = None
+        self._readed = False
 
     @property
-    def max_figure(self) -> Figure:
-        return self._max_figure
+    def max_volume_figure(self) -> Figure:
+        return self._max_volume_figure
 
-    @max_figure.setter
     def max_figure(self, fig: Figure):
-        perim = fig.perimeter
-        area = fig.area
-        if area > self.max_area and perim > self.max_perimeter:
-            self._max_figure = fig
-            self.max_perimeter = perim
-            self.max_area = area
+        if fig is None:
+            return 
 
+        volume = fig.volume()
+        if volume > self._max_volume:
+            self._max_volume_figure = fig
+            self._max_volume = volume
 
-    def __create_figure(self, name: str, params: list[Len]) -> Figure:
+    def __create_figure__(self, name: str, params: list[Len]) -> Figure:
         try:
             class_ = globals()[name]
             instance = class_(*params)
@@ -37,25 +31,22 @@ class ReaderFiguresData:
             print(f"Figure {name} not exist!")
             return None
 
-
     def read(self) -> None:
-        file = open(self.filepath, "r") 
+        file = open(self._filepath, "r") 
         for line in file:
             line = line.strip().split()
             name = line[0]
             params = list(map(int, line[1:]))
 
-            fig = self.__create_figure(name, params)
+            fig = self.__create_figure__(name, params)
             
-            self.max_figure = fig
+            self.max_figure(fig)
 
         self.readed = True
 
 
-    def get_result(self) -> None:
+    def get_result(self) -> Figure:
         if not self.readed:
             raise Exception("You don't read data yet.")
-        
-        return (self.max_figure,
-                self.max_perimeter,
-                self.max_area)
+       
+        return self.max_volume_figure
