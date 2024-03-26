@@ -55,9 +55,6 @@ class QuadraticEquation(Equation):
         else:
             return [(-b + sqrt(D))/(2*a), 
                     (-b - sqrt(D))/(2*a)]
-    
-    def __repr__(self):
-        return str(self)
 
     def __str__(self):
         a = self._a
