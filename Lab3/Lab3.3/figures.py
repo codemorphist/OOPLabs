@@ -303,6 +303,9 @@ class TriangularPyramid(Figure3D):
     
     @validate
     def square_base(self) -> Area:
+        """
+        Area of right triangle
+        """
         return self.a**2*sqrt(3)/4
 
     @validate
@@ -335,6 +338,10 @@ class QuadrangularPyramid(Figure3D):
 
     @validate
     def square_surface(self) -> Area:
+        """
+        Calculate apothems and calculate area of side triangles 
+        by formule [S=1/2*a*h]
+        """
         height = self.height
         a, b = self.a, self.b
         surf_a_height = sqrt(height**2 + (b/2)**2)
@@ -345,6 +352,9 @@ class QuadrangularPyramid(Figure3D):
 
     @validate
     def square_base(self) -> Area:
+        """
+        Return area of base rectangle
+        """
         return self.a * self.b
 
     @validate 
@@ -392,6 +402,10 @@ class Cone(Figure3D):
 
     @validate
     def square_surface(self) -> Area:
+        """
+        Clculate apothem and side area by formule
+        [S=pi*r*L]
+        """
         L = sqrt(self.r ** 2 + self.height ** 2)
         return pi * self.r * L
 
