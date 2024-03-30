@@ -16,10 +16,10 @@ def print_info(data: ReaderFiguresData):
     print("-"*60, "\n")
 
 
-data1 = ReaderFiguresData("./test_data/input01.txt")
-data2 = ReaderFiguresData("./test_data/input02.txt")
-data3 = ReaderFiguresData("./test_data/input03.txt")
-data4 = ReaderFiguresData("./test_data/input04.txt")
+data1 = ReaderFiguresData("../test_data/input01.txt")
+data2 = ReaderFiguresData("../test_data/input02.txt")
+data3 = ReaderFiguresData("../test_data/input03.txt")
+data4 = ReaderFiguresData("../test_data/input04.txt")
 
 data1.read()
 data2.read()

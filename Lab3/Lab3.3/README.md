@@ -1,7 +1,7 @@
 # ЛАБОРАТОРНА РОБОТА 3. Наслідування та поліморфізм
 
 # UML Diagram of classes
-![UML Diagram of figures.py](./figures.png "UML Diagram of figures.py classes")
+![UML Diagram of figures.py](./uml/figures.png "UML Diagram of figures.py classes")
 
 ## Task 1
 
