@@ -1,0 +1,143 @@
+@startuml
+
+abstract class Figure {
+    - dimention: int
+    - name: string
+    + {abstract} volume(): Area | Volume
+    + {abstract} valid()(): bool
+}
+
+abstract class Figure2D {
+    + {abstract} perimeter(): Len "Return perimeter of the figure"
+    + {abstract} area(): Len "Return the area of the figure"
+    + square(): Area "Calculate the square of the figure"
+}
+
+abstract class Figure3D {
+    + {abstract} volume(): Area "Return the volume of the figure"
+    + {abstract} square_surface(): Area "Return the surface area of the figure"
+    + {abstract} square_base(): Area "Return the area of the base of the figure"
+}
+
+abstract class Polygon {
+    + perimeter(): Len "Return the perimeter of the polygon"
+    - valid(): bool
+}
+
+class Triangle {
+    + sides: list[Len]
+
+    + area(): Area 
+    - valid(): bool
+}
+
+class Rectangle {
+    + sides: list[Len]
+
+    + area(): Area 
+}
+
+class Trapeze {
+    + sides: list[Len]
+
+    + heigth(): Len 
+    + area(): Area 
+    - valid(): bool
+}
+
+class Parallelogram {
+    + sides: list[Len]
+    + height: Len
+
+    + area(): Area 
+    + heigth(): Len
+}
+
+class Circle {
+    + r: Len "Radius of the circle"
+
+    + perimeter(): Len 
+    + area(): Area 
+    - valid(): bool
+}
+
+class Ball {
+    + r: Len "Radius of the ball"
+
+    + square_surface(): Area 
+    + volume(): Volume 
+    - valid(): bool
+}
+
+class TriangularPyramid {
+    + a: Len "Len of base side"
+    + height: Len 
+
+    + square_base(): Area 
+    + square_surface(): Area 
+    + volume(): Volume 
+    - valid(): bool
+}
+
+class QuadrangularPyramid {
+    + a: Len
+    + b: Len
+    + height: Len
+
+    + square_surface(): Area 
+    + square_base(): Area 
+    + volume(): Volume 
+    - valid(): bool
+}
+
+class RectangularParallelepiped {
+    + sides: list[Len]
+
+    + square_surface(): Area 
+    + square_base(): Area 
+    + volume(): Volume 
+    - valid(): bool
+}
+
+class Cone {
+    + r: Len "Radius of the base circle"
+    + height: Len
+
+    + square_surface(): Area 
+    + square_base(): Area 
+    + volume(): Volume 
+    - valid(): bool
+}
+
+class TriangularPrism {
+    + sides: list[Len]
+    + height: Len
+
+    + square_surface(): Area 
+    + square_base(): Area 
+    + volume(): Volume 
+    - valid(): bool
+}
+
+
+Figure <|-- Figure2D
+Figure <|-- Figure3D
+
+Figure2D <|-- Polygon
+Figure2D <|-- Circle
+
+Polygon <|-- Triangle
+Polygon <|-- Rectangle
+Polygon <|-- Trapeze
+Polygon <|-- Parallelogram
+
+
+Figure3D <|-- Ball
+Figure3D <|-- TriangularPyramid
+Figure3D <|-- QuadrangularPyramid
+Figure3D <|-- RectangularParallelepiped
+Figure3D <|-- Cone
+Figure3D <|-- TriangularPrism
+
+@enduml
+

@@ -67,3 +67,6 @@
   - input03.txt
 
 files url: https://github.com/krenevych/oop/tree/master/labs/lab03/home/task1
+
+# UML Diagram of classes
+![UML Diagram of figures.py](./figures.png "UML Diagram of figures.py classes")

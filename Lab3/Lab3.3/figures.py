@@ -104,13 +104,6 @@ class Figure3D(Figure):
         """
         pass
 
-    @property
-    def heigth(self) -> Len:
-        """
-        Return len of figure height
-        """
-        pass 
-
 
 class Polygon(Figure2D):
     @property
@@ -218,8 +211,8 @@ class Trapeze(Polygon):
 
 class Parallelogram(Polygon):
     def __init__(self, a: Len, b: Len, heigth: Len):
-        self.sides = [a, b, a, b]
-        self.heigth = heigth
+        self.sides: List[Len] = [a, b, a, b]
+        self.height: Len = heigth
 
     @property
     @validate
@@ -229,7 +222,7 @@ class Parallelogram(Polygon):
         [S = 1/2 * a * h]
         """
         a = max(self.sides)
-        return a * self.heigth * 0.5
+        return a * self.height * 0.5
 
     def __str__(self) -> str:
         return f"[{self.name}] ({self.sides[0]}, {self.sides[1]}, {self.heigth})"
@@ -237,7 +230,7 @@ class Parallelogram(Polygon):
         
 class Circle(Figure2D):
     def __init__(self, r: Len):
-        self.r = r
+        self.r: Len = r
 
     @property
     @validate
@@ -271,7 +264,7 @@ class Circle(Figure2D):
 
 class Ball(Figure3D):
     def __init__(self, r: Len):
-        self.r = r
+        self.r: Len = r
 
     @property
     def valid(self) -> bool:
@@ -293,9 +286,9 @@ class Ball(Figure3D):
 
 
 class TriangularPyramid(Figure3D):
-    def __init__(self, a: Len, heigth: Len):
-        self.a = a  # Len of base side
-        self.height = heigth   # Height of pyramid 
+    def __init__(self, a: Len, height: Len):
+        self.a: Len = a  # Len of base side
+        self.height: Len = height   # Height of pyramid 
 
     @property
     def valid(self) -> bool:
@@ -327,9 +320,9 @@ class TriangularPyramid(Figure3D):
 
 class QuadrangularPyramid(Figure3D):
     def __init__(self, a: Len, b: Len, height: Len):
-        self.a = a
-        self.b = b
-        self.height = height
+        self.a: Len = a
+        self.b: Len = b
+        self.height: Len = height
 
    
     @property
@@ -367,34 +360,37 @@ class QuadrangularPyramid(Figure3D):
 
 class RectangularParallelepiped(Figure3D):
     def __init__(self, a: Len, b: Len, c: Len):
-        self.a = a
-        self.b = b
-        self.c = c
+        self.sides: list[Len] = [a, b, c]
 
     @property
     def valid(self) -> bool:
-        return self.a > 0 and self.b > 0 and self.c > 0
+        a, b, c = self.sides
+        return a > 0 and b > 0 and c > 0
 
     @validate
     def square_surface(self) -> Area:
-        a, b, c = self.a, self.b, self.c
+        a, b, c = self.sides
         return 2*a*c + 2*b*c
 
     @validate
     def square_base(self) -> Area:
-        return self.a * self.b
+        a, b, _ = self.sides
+        return a * b
 
     @validate
     def volume(self) -> Volume:
-        return self.a * self.b * self.c
+        a, b, c = self.sides
+        return a * b * c
 
     def __str__(self) -> str:
-        return f"({self.name}) [{self.a}, {self.b}, {self.c}]"
+        a, b, c = self.sides
+        return f"({self.name}) [{a}, {b}, {c}]"
+
 
 class Cone(Figure3D):
     def __init__(self, r: Len, height: Len):
-        self.r = r
-        self.height = height
+        self.r: Len = r
+        self.height: Len = height
 
     @property
     def valid(self) -> bool:
@@ -423,8 +419,8 @@ class Cone(Figure3D):
 
 class TriangularPrism(Figure3D):
     def __init__(self, a: Len, b: Len, c: Len, height: Len):
-        self.sides = [a, b, c]
-        self.height = height
+        self.sides: list[Len] = [a, b, c]
+        self.height: Len = height
 
     @property
     def valid(self) -> bool:
