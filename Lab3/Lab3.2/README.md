@@ -1,2 +1,2 @@
 # UML Diagram 
-![UML Diagram](./equation.png)
+![UML Diagram](./uml/equation.png)
