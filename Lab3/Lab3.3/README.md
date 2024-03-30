@@ -1,5 +1,8 @@
 # ЛАБОРАТОРНА РОБОТА 3. Наслідування та поліморфізм
 
+# UML Diagram of classes
+![UML Diagram of figures.py](./figures.png "UML Diagram of figures.py classes")
+
 ## Task 1
 
 ### Methods
@@ -68,5 +71,4 @@
 
 files url: https://github.com/krenevych/oop/tree/master/labs/lab03/home/task1
 
-# UML Diagram of classes
-![UML Diagram of figures.py](./figures.png "UML Diagram of figures.py classes")
+

@@ -11,9 +11,9 @@ def print_result(r: ReaderFiguresData):
     print("-"*30)
 
 
-r1 = ReaderFiguresData("test_data/input01.txt")
-r2 = ReaderFiguresData("test_data/input02.txt")
-r3 = ReaderFiguresData("test_data/input03.txt")
+r1 = ReaderFiguresData("../test_data/input01.txt")
+r2 = ReaderFiguresData("../test_data/input02.txt")
+r3 = ReaderFiguresData("../test_data/input03.txt")
 
 print_result(r1)
 print_result(r2)
