@@ -33,7 +33,7 @@ class QuadraticEquation(Equation):
         super().__init__(b, c)
 
     @property
-    def D(self) -> float: # discriminant
+    def D(self) -> float | int: # discriminant
         """
         :return discriminant of quadric equation 
         """

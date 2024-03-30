@@ -1,0 +1,30 @@
+@startuml
+
+class Equation {
+  - b: float | int
+  - c: float | int
+  
+  + solve(): list[float | int]
+}
+
+class QuadraticEquation {
+  - a: float | int
+  - b: float | int
+  - c: float | int
+
+  + D(): float | int "Return discriminant"
+  + solve(): list[float | int]
+}
+
+class BiQuadraticEquation {
+  - a: float | int
+  - b: float | int
+  - c: float | int
+
+  + solve(): list[float | int]
+}
+
+Equation <|-- QuadraticEquation
+QuadraticEquation <|-- BiQuadraticEquation
+
+@endum
