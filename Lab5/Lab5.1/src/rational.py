@@ -70,7 +70,7 @@ class Rational:
 
         slash = False
         for ch in rstr:
-            if ch not in ["/", " "] and not ch.isnumeric():
+            if ch not in ["/", " ", "-"] and not ch.isnumeric():
                 return False
             if ch == "/":
                 slash = True
