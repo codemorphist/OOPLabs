@@ -3,6 +3,8 @@ from rational import Rational
 
 class RationalIterator:
     def __init__(self, collection):
+        if not isinstance(collection, RationalList):
+            raise TypeError(f"Invalid type ({type(collection).__name__}) for RationalIterator")
         self.__collection__ = collection
         self.__sort__()
         self.__cursor__ = 0
