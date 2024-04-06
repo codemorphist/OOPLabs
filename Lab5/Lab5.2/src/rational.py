@@ -111,6 +111,7 @@ class Rational:
         """
         n, d = self
         if n == 0:
+            self._d = 1
             return
         g = gcd(n, d)
         self._n = n // g
