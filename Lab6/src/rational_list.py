@@ -1,5 +1,4 @@
 from rational import Rational
-from copy import copy
 
 
 class RationalIterator:
@@ -58,7 +57,7 @@ class RationalList(list):
             super().extend(item for item in items)
 
     def __add__(self, other):
-        new = copy(self)
+        new = RationalList([*self])
         if isinstance(other, list):
             new.extend(other)
         else:
