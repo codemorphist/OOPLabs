@@ -57,27 +57,6 @@ class Rational:
 
         self.__simplify__()
 
-    def __validate__(self, rstr: str) -> bool:
-        """
-        This fucntion validate correct Rational number 
-        in string representation: N/D
-
-        :param rstr: Rational number string representation
-        :return: Valid of invalid string representation
-        """
-        if rstr.count("/") > 1:
-            return False
-
-        slash = False
-        for ch in rstr:
-            if ch not in ["/", " ", "-"] and not ch.isnumeric():
-                return False
-            if ch == "/":
-                slash = True
-            if slash and ch.isnumeric():
-                slash = False
-        return True and not slash      
-
     def __parse__(self, rstr: str) -> tuple[int, int]:
         """
         Parse Numerator and Denumerator from Rational number
@@ -100,6 +79,27 @@ class Rational:
             n = int(rstr)
 
         return n, d
+
+    def __validate__(self, rstr: str) -> bool:
+        """
+        This fucntion validate correct Rational number 
+        in string representation: N/D
+
+        :param rstr: Rational number string representation
+        :return: Valid of invalid string representation
+        """
+        if rstr.count("/") > 1:
+            return False
+
+        slash = False
+        for ch in rstr:
+            if ch not in ["/", " ", "-"] and not ch.isnumeric():
+                return False
+            if ch == "/":
+                slash = True
+            if slash and ch.isnumeric():
+                slash = False
+        return True and not slash    
     
     def __repr__(self) -> str:
         return f"Rational{self._n, self._d}"
@@ -107,7 +107,7 @@ class Rational:
     def __simplify__(self) -> None:
         """
         Simplify Rational number, divide 
-        N and D of GDC(N, D)
+        N and D by GDC(N, D)
         """
         n, d = self
         if n == 0:
@@ -136,10 +136,20 @@ class Rational:
             if item == "d" and value == 0:
                 raise ZeroDivisionError("Zero division in Rational number")
             elif not isinstance(value, int):
-                raise ValueError(f"Cannot set {value} as value of Rational number")
+                raise ValueError(f"Can't set {value} as value of Rational number")
             else:
                 if item == "d": self._d = value
                 else: self._n = value
+
+    @property
+    def n(self) -> int:
+        """Return Numerator"""
+        return self._n
+
+    @property
+    def d(self) -> int:
+        """Return Denumerator"""
+        return self._d
 
     def __iter__(self):
         """
@@ -161,7 +171,7 @@ class Rational:
 
             return Rational(n, d)
         else:
-            raise TypeError(f"Can not add {type(other).__name__} and Rational")
+            raise TypeError(f"Can't add {type(other).__name__} to Rational")
     
     def __sub__(self, other):
         return self + -1*other
@@ -172,7 +182,7 @@ class Rational:
         elif isinstance(other, Rational):
             return Rational(self._n * other._n, self._d * other._d)
         else:
-            raise TypeError(f"Can not multiply {type(other).__name__} and Rational")
+            raise TypeError(f"Can't multiply {type(other).__name__} and Rational")
 
     def __truediv__(self, other):
         if isinstance(other, int):
@@ -180,7 +190,7 @@ class Rational:
         elif isinstance(other, Rational):
             return Rational(self._n * other._d, self._d * other._n)
         else:
-            raise TypeError(f"Can not divide Rational on {type(other).__name__}")
+            raise TypeError(f"Can't divide Rational on {type(other).__name__}")
 
     def __radd__(self, other):
         return self + other
@@ -191,7 +201,7 @@ class Rational:
         elif isinstance(other, Rational):
             return other - self
         else:
-            raise TypeError(f"Can not subtitude Rational from {type(other).__name__}")
+            raise TypeError(f"Can't subtitude Rational from {type(other).__name__}")
 
     def __rmul__(self, other):
         return self * other
@@ -202,5 +212,5 @@ class Rational:
         elif isinstance(other, Rational):
             return other / self
         else:
-            raise TypeError(f"Can not divide {type(other).__name__} on Rational")
+            raise TypeError(f"Can't divide {type(other).__name__} on Rational")
 
