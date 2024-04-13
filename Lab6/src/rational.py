@@ -13,9 +13,6 @@ class Rational:
         # ----------------------------------
         # if str representation
         if isinstance(args[0], str):
-            if len(args) > 1:
-                raise Exception(f"Too many arguments for Rational number")
-
             cls.__from_string__(self, args[0])
             return self
 
